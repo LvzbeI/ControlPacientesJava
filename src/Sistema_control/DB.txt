@@ -1,0 +1,17 @@
+mysql> create database podologo;
+
+mysql> use podologo;
+
+mysql> create table pacientes(id_paciente int primary key not null, nombre varchar(20), apellidos varchar(20), sexo varchar(10), fecha_na varchar(30), correo varchar(20), telefono int, fecha_con varchar(30), obs varchar(500));
+
+mysql> create table consul(id_paciente int, foreign key(id_paciente) references pacientes(id_paciente), fecha_con varchar(30),
+texto varchar(500));
+
+mysql> alter table consul add column fecha_con varchar(30) unique not null after id_paciente;
+
+
+alter table consul add constraint fk1 foreign key(fecha_con) references pacientes(fecha_con) on delete cascade on update cascade;
+
+mysql> create table doctor(nom_doc varchar(25) primary key, contrasena varchar(30));
+
+mysql> insert into doctor values('garcia', '1234');
